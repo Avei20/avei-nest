@@ -1,39 +1,19 @@
-#Local Development 
-FROM node:21-alpine AS development 
-
-WORKDIR /usr/src/app
-
-COPY --chown=node:node package*.json ./
-
-RUN yarn install
-
-COPY --chown=node:node . .
-
-USER node
-
 # Building 
 FROM node:21-alpine AS builder 
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
-COPY --chown=node:node package*.json ./
+COPY ./package.json ./
 
-COPY --chown=node:node --from=development /usr/src/app/node_modules ./node_modules
+RUN yarn install 
 
-COPY --chown=node:node . .
+COPY . .
 
 RUN yarn run build 
-
-ENV NODE_ENV production 
-
-RUN yarn install --production
-
-USER node 
 
 # Production 
 FROM node:21-alpine AS production 
 
-COPY --chown=node:node --from=builder /usr/src/app/node_modules ./node_modules
-COPY --chown=node:node --from=builder /usr/src/app/dist ./dist 
+COPY --from=builder /app ./
 
-CMD [ "yarn", "dist/main.js" ]
+CMD [ "yarn", "start:prod" ]
