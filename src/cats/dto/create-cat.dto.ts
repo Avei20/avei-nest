@@ -5,7 +5,7 @@ export class CreateCatDto {
 }
 
 export class UpdateCatDto {
-  name: string 
+  name: string
   age: number
   breed: string
 }

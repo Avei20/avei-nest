@@ -1,3 +1,1 @@
-interface Cat {
-    
-}
+interface Cat {}
