@@ -9,6 +9,9 @@ RUN yarn install
 
 COPY . .
 
+# Make Service Account Key 
+RUN yarn prebuild
+
 RUN yarn run build 
 
 # Production 

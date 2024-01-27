@@ -8,7 +8,7 @@ import {
 import { Server, Socket } from 'socket.io'
 import { GeminiService } from 'src/gemini/gemini.service'
 
-@WebSocketGateway({ cors: true })
+@WebSocketGateway({ cors: true, upgradeTimeout: 60000 })
 export class ChatGateway implements OnGatewayDisconnect {
   private readonly logger: Logger = new Logger(ChatGateway.name)
 
