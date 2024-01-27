@@ -16,7 +16,6 @@ async function bootstrap() {
 
   // Disabling x-powered-by
   app.getHttpAdapter().getInstance().disable('x-powered-by')
-  Logger.log(process.env.GEMINI_API_KEY)
 
   // Generating Swagger Docs
   const options = new DocumentBuilder()

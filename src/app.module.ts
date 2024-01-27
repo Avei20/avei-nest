@@ -9,8 +9,10 @@ import { CatsModule } from './cats/cats.module'
 import { ChatGateway } from './v1/chat/chat.gateway'
 import { GeminiModule } from './gemini/gemini.module'
 import { ChatModule } from './v1/chat/chat.module'
-import { ConfigModule } from '@nestjs/config'
+import { ConfigModule, ConfigService } from '@nestjs/config'
 import gemini from './config/gemini'
+import { FirestoreModule } from './firestore/firestore.module'
+import { FeedbackModule } from './v1/feedback/feedback.module'
 
 @Module({
   imports: [
@@ -18,7 +20,24 @@ import gemini from './config/gemini'
       isGlobal: true,
       load: [gemini],
     }),
+    FirestoreModule.forRoot({
+      import: [ConfigModule],
+      useFactory: (configService: ConfigService) => 
+        configService.get<string>('STAGING') === 'dev'
+          ? {
+              host: 'localhost',
+              port: 8080,
+              ssl: false,
+            }
+          : {
+              keyFilename: `src/key/${configService.get<string>(
+                'FIRESTORE_KEY_FILENAME',
+              )}`,
+            },
+      inject: [ConfigService],
+    }),
     CatsModule,
+    FeedbackModule,
     GeminiModule,
     ChatModule,
   ],
