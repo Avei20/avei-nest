@@ -22,12 +22,18 @@ import { FeedbackModule } from './v1/feedback/feedback.module'
     }),
     FirestoreModule.forRoot({
       import: [ConfigModule],
-      useFactory: (configService: ConfigService) => 
+      useFactory: (configService: ConfigService) =>
         configService.get<string>('STAGING') === 'dev'
           ? {
               host: 'localhost',
               port: 8080,
               ssl: false,
+            }
+          : configService.get<string>('STAGING') === 'prod'
+          ? {
+              keyFilename: `dist/key/${configService.get<string>(
+                'FIRESTORE_KEY_FILENAME',
+              )}`,
             }
           : {
               keyFilename: `src/key/${configService.get<string>(

@@ -9,10 +9,11 @@ RUN yarn install
 
 COPY . .
 
-# Make Service Account Key 
-RUN yarn prebuild
 
 RUN yarn run build 
+
+# Make Service Account Key 
+RUN yarn generateKey
 
 # Production 
 FROM node:21-alpine AS production 
