@@ -12,8 +12,9 @@ const firestoreCredentials = {
   client_id: process.env.FIRESTORE_CLIENT_ID,
   auth_uri: process.env.FIRESTORE_AUTH_URI,
   token_uri: process.env.FIRESTORE_TOKEN_URI,
-  auth_provider_x509_cert_url: process.env.FIRESTORE_AUTH_PROVIDER_CERT_URL,
-  client_x509_cert_url: process.env.FIRESTORE_CLIENT_CERT_URL,
+  auth_provider_x509_cert_url:
+    process.env.FIRESTORE_AUTH_PROVIDER_X509_CERT_URL,
+  client_x509_cert_url: process.env.FIRESTORE_CLIENT_X509_CERT_URL,
   universe_domain: process.env.FIRESTORE_UNIVERSE_DOMAIN,
 }
 
