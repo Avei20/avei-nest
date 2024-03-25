@@ -16,4 +16,4 @@ FROM node:21-alpine AS production
 
 COPY --from=builder /app ./
 
-CMD [ "yarn","generateKey", "&&", "yarn", "start:prod" ]
+CMD [ "/bin/ash", "-c", "yarn start:prod" ]

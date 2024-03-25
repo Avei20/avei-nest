@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "generateKey": "ts-node src/key/keyGenerator.ts",
-    "build": "nest build",
+    "build": "ts-node src/key/keyGenerator.ts && nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
