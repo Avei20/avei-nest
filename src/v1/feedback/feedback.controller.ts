@@ -1,12 +1,4 @@
-import {
-  Body,
-  Controller,
-  Get,
-  Logger,
-  Post,
-  Res,
-  Version,
-} from '@nestjs/common'
+import { Body, Controller, Get, Logger, Post, Version } from '@nestjs/common'
 import { CreateFeedbackDTO } from './dto/create.dto'
 import { FeedbackService } from './feedback.service'
 
@@ -24,7 +16,7 @@ export class FeedbackController {
 
   @Get()
   @Version('1')
-  async getFeedback(@Res() res) {
-    res.sendFile('avei-playground-969888142f02.json', { root: 'src/key' })
+  async getFeedback() {
+    return
   }
 }
