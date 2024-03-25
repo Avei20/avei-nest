@@ -29,12 +29,6 @@ import { FeedbackModule } from './v1/feedback/feedback.module'
               port: 8080,
               ssl: false,
             }
-          : configService.get<string>('STAGING') === 'prod'
-          ? {
-              keyFilename: `dist/key/${configService.get<string>(
-                'FIRESTORE_KEY_FILENAME',
-              )}`,
-            }
           : {
               keyFilename: `src/key/${configService.get<string>(
                 'FIRESTORE_KEY_FILENAME',
