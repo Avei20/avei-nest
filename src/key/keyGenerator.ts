@@ -19,7 +19,9 @@ const firestoreCredentials = {
 
 console.log(firestoreCredentials)
 
-writeFileSync(
-  `src/key/${process.env.FIRESTORE_KEY_FILENAME}`,
-  JSON.stringify(firestoreCredentials),
-)
+export const generateFirestoreKey = () => {
+  writeFileSync(
+    `src/key/${process.env.FIRESTORE_KEY_FILENAME}`,
+    JSON.stringify(firestoreCredentials),
+  )
+}
