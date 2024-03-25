@@ -30,9 +30,7 @@ import { FeedbackModule } from './v1/feedback/feedback.module'
               ssl: false,
             }
           : {
-              keyFilename: `src/key/${configService.get<string>(
-                'FIRESTORE_KEY_FILENAME',
-              )}`,
+              keyFilename: `src/key/avei-playground-969888142f02.json`,
             },
       inject: [ConfigService],
     }),
