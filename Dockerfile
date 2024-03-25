@@ -9,12 +9,15 @@ RUN yarn install
 
 COPY . .
 
-
 RUN yarn run build 
 
 # Make Service Account Key 
 RUN yarn generateKey
 
+
+RUN ls src/key -a
+
+RUN ls dist/key -a 
 # Production 
 FROM node:21-alpine AS production 
 
