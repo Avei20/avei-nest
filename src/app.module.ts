@@ -13,6 +13,9 @@ import { ConfigModule, ConfigService } from '@nestjs/config'
 import gemini from './config/gemini'
 import { FirestoreModule } from './firestore/firestore.module'
 import { FeedbackModule } from './v1/feedback/feedback.module'
+import { TweetsModule } from './v1/tweets/tweets.module';
+import { PokemonService } from './v1/pokemon/pokemon.service';
+import { PokemonModule } from './v1/pokemon/pokemon.module';
 
 @Module({
   imports: [
@@ -38,6 +41,8 @@ import { FeedbackModule } from './v1/feedback/feedback.module'
     FeedbackModule,
     GeminiModule,
     ChatModule,
+    TweetsModule,
+    PokemonModule,
   ],
   controllers: [
     AppController,
@@ -45,6 +50,6 @@ import { FeedbackModule } from './v1/feedback/feedback.module'
     AdminController,
     AccountController,
   ],
-  providers: [AppService, CatsService, ChatGateway],
+  providers: [AppService, CatsService, ChatGateway, PokemonService],
 })
 export class AppModule {}
